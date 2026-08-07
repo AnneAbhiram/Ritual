@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1" />
+  <title>Ritual — habit tracker</title>
+  <meta name="description" content="A dark, colorful, offline-first habit tracker with simple ticks and timed goals." />
+  <meta name="theme-color" content="#0d0f14" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  <link rel="icon" href="icons/icon-192.png" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div id="app">
+    <div class="header">
+      <div>
+        <h1>Ritual</h1>
+        <span class="date" id="today-date"></span>
+      </div>
+      <button class="icon-btn" id="btn-settings" aria-label="Settings">⚙</button>
+    </div>
+
+    <div class="summary-bar" id="summary-bar"></div>
+
+    <div class="habit-list" id="habit-list"></div>
+  </div>
+
+  <button class="fab" id="fab-add" aria-label="Add habit">+</button>
+
+  <div class="sheet-backdrop" id="sheet-backdrop">
+    <div class="sheet" id="sheet-content"></div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="vendor/sql-wasm.js"></script>
+  <script type="module" src="js/app.js"></script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("sw.js").catch(() => {});
+      });
+    }
+  </script>
+</body>
+</html>
